@@ -1,0 +1,2 @@
+from .generic_document import AbstractBaseDocument
+from .stakeholder import AbstractBaseStakeholder
