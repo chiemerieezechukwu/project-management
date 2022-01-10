@@ -9,6 +9,8 @@ bash setup.sh || exit 1
 
 cd ..
 
+source venv/bin/activate
+
 pytest --cov-report=term-missing --cov=crowdmoni --disable-network -x --cov-fail-under=90
 
 echo "writing coverage..."
