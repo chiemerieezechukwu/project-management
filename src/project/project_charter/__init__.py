@@ -1,5 +1,7 @@
 from typing import List, Union
+
 from src.utils import AbstractBaseDocument
+
 from ..project_stakeholder import Stakeholder
 
 

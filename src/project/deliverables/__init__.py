@@ -12,7 +12,7 @@ class Deliverable(AbstractBaseDocument):
 
     @property
     def accepted(self):
-        if self._accepted is None:
+        if not isinstance(self._accepted, bool):
             return "N/A"
         return self._accepted
 
@@ -53,7 +53,6 @@ class Deliverable(AbstractBaseDocument):
 
     def mark_as_accepted(self):
         self._accepted = True
-    
+
     def mark_as_rejected(self):
         self._accepted = False
-

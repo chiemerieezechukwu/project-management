@@ -1,4 +1,4 @@
-from .helpers import RiskProbabilty, RiskImpact, RiskScore, RiskCounterMeasure
+from .helpers import RiskCounterMeasure, RiskImpact, RiskProbabilty, RiskScore
 
 
 class Risk:

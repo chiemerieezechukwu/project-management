@@ -45,7 +45,7 @@ deliverable.set_reviewer(professor)
 project.accept_deliverable(deliverable)
 
 # The below method is one of 15 factory methods that can be used to create an instance of the Risk class
-risk = Risk.moderate_probability_medium_impact(risk_name='Risk Name')
-risk.set_counter_measure('reduce')
+risk = Risk.moderate_probability_medium_impact(risk_name="Risk Name")
+risk.set_counter_measure("reduce")
 
 project.add_new_project_risk(risk)

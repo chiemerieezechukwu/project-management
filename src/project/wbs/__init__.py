@@ -1,7 +1,9 @@
 class WBS:
     def __init__(self) -> None:
         self._wbs_items = []
-        self._percent_complete = None # an aggregation of the % complete of the individual work items
+        self._percent_complete = (
+            None  # an aggregation of the % complete of the individual work items
+        )
         self._critical_path = None
         self._start_date = None
         self._finish_date = None

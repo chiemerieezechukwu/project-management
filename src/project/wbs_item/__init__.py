@@ -3,7 +3,7 @@ class WBSItem:
         self.work_item_name = work_item_name
         self.start_date = start_date
         self.duration = duration
-        self._status = None # 'ACTIVE', 'ON HOLD', 'COMPLETE' as possible values
+        self._status = None  # 'ACTIVE', 'ON HOLD', 'COMPLETE' as possible values
         self._objective = None
         self._resource = None
         self._depends_on = None

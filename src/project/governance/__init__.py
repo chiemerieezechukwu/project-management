@@ -9,7 +9,7 @@ class ProjectGovernance:
         self._project = project
         self._signed_by = []
         self._project_charter: ProjectCharter = project.project_charter
-        self._not_signed_by: list = self.get_all_stakeholders() # should always be last else attributes that come later won't be initialized
+        self._not_signed_by: list = self._project_charter.project_stakeholders[:]
 
     @property
     def signed_by(self) -> list:
@@ -20,11 +20,19 @@ class ProjectGovernance:
         return self._not_signed_by
 
     @property
-    def signed_by_all(self):
+    def signed_by_all(self) -> bool:
         return not bool(len(self._not_signed_by))
 
     def sign_agreement(self, signee: Stakeholder):
-        assert signee not in self._signed_by and signee in self._not_signed_by, (
+        assert isinstance(signee, Stakeholder), (
+            "Expected type Stakeholder, found %s" % type(signee).__name__
+        )
+
+        assert signee in self.get_all_stakeholders(), (
+            "%s can't sign as they are external to the project" % signee.get_full_name()
+        )
+
+        assert signee not in self._signed_by, (
             "This document has already been signed by %s." % signee.get_full_name()
         )
         self._signed_by.append(signee)
