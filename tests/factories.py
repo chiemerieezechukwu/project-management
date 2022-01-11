@@ -1,9 +1,8 @@
 import factory
-from faker import Faker
 
 from project.project_stakeholder import Stakeholder
 
-faker = Faker()
+from .faker import faker
 
 
 class StakeholderFactory(factory.Factory):

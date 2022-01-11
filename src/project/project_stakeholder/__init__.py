@@ -73,7 +73,7 @@ class Stakeholder(AbstractBaseStakeholder):
 
     def add_to_involved_projects(self, value):
         """
-        This method should only be called by the __finalize_add_stakeholder()
+        This method should only be called by the `.__finalize_add_stakeholder()`
         method in the ProjectCharter class
         """
         self._projects_involved.append(value)

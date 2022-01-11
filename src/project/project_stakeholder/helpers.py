@@ -36,7 +36,7 @@ class RoleEnum(Enum):
     ACCOUNTABLE = "A"
     CONSULTED = "C"
     INFORMED = "I"
-    UNSET = None
+    UNSET = "UNSET"
 
     @classmethod
     def list_allowed_values(cls):
