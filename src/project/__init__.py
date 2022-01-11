@@ -19,15 +19,11 @@ class Project:
         return self._project_risks
 
     def add_new_project_risk(self, risk):
-        assert (
-            risk not in self._project_risks
-        ), "This Risk already exists within the current project"
+        assert risk not in self._project_risks, "This Risk already exists within the current project"
         self._project_risks.append(risk)
 
     def add_deliverable(self, value: Deliverable):
-        assert (
-            value not in self._deliverables
-        ), "This Deliverable already exists within the project"
+        assert value not in self._deliverables, "This Deliverable already exists within the project"
         self._deliverables.append(value)
 
     def create_deliverable(self, deliverable_name):
@@ -36,13 +32,9 @@ class Project:
         return deliverable
 
     def accept_deliverable(self, deliverable: Deliverable):
-        assert (
-            deliverable in self._deliverables
-        ), "Deliverable does not exist within the current project"
+        assert deliverable in self._deliverables, "Deliverable does not exist within the current project"
         deliverable.mark_as_accepted()
 
     def reject_deliverable(self, deliverable: Deliverable):
-        assert (
-            deliverable in self._deliverables
-        ), "Deliverable does not exist within the current project"
+        assert deliverable in self._deliverables, "Deliverable does not exist within the current project"
         deliverable.mark_as_rejected()

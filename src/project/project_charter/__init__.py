@@ -42,8 +42,7 @@ class ProjectCharter(AbstractBaseDocument):
 
     def add_stakeholder(self, stakeholder: Union[Stakeholder, List[Stakeholder]]):
         assert self.is_class_stakeholder(stakeholder), (
-            "Only Stakeholder instances can be added, not %s."
-            % type(stakeholder).__name__
+            "Only Stakeholder instances can be added, not %s." % type(stakeholder).__name__
         )
         if isinstance(stakeholder, (list, tuple)):
             for s in stakeholder:
@@ -53,8 +52,7 @@ class ProjectCharter(AbstractBaseDocument):
 
     def __finalize_add_stakeholder(self, stakeholder: Stakeholder):
         assert stakeholder not in self._project_stakeholders, (
-            'This Stakeholder "%s" already exists within the charter'
-            % stakeholder.get_full_name()
+            'This Stakeholder "%s" already exists within the charter' % stakeholder.get_full_name()
         )
         self._project_stakeholders.append(stakeholder)
         stakeholder.add_to_involved_projects(self)

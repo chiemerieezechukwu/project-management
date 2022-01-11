@@ -18,18 +18,14 @@ def test_Deliverable(deliverable: Deliverable, monkeypatch):
     monkeypatch.setattr(deliverable, "description", "Fake Description", raising=True)
     assert deliverable.description == "Fake Description"
 
-    monkeypatch.setattr(
-        deliverable, "acceptance_criteria", "Fake Criteria", raising=True
-    )
+    monkeypatch.setattr(deliverable, "acceptance_criteria", "Fake Criteria", raising=True)
     assert deliverable.acceptance_criteria == "Fake Criteria"
 
     monkeypatch.setattr(deliverable, "expected_result", "Fake Result", raising=True)
     assert deliverable.expected_result == "Fake Result"
 
 
-def test_can_set_deliverable_reviewer(
-    deliverable: Deliverable, stakeholder: Stakeholder
-):
+def test_can_set_deliverable_reviewer(deliverable: Deliverable, stakeholder: Stakeholder):
     deliverable.set_reviewer(stakeholder)
     assert deliverable.reviewer is stakeholder
 

@@ -22,9 +22,7 @@ class Stakeholder(AbstractBaseStakeholder):
     @stakeholder_type.setter
     def stakeholder_type(self, value: str):
         allowed_values = StakeholderTypeEnum.list_allowed_values()
-        assert (
-            value.lower() in allowed_values
-        ), 'Couldn\'t set property "stakeholder_type". "%s" is not in %s' % (
+        assert value.lower() in allowed_values, 'Couldn\'t set property "stakeholder_type". "%s" is not in %s' % (
             value,
             allowed_values,
         )
@@ -37,9 +35,10 @@ class Stakeholder(AbstractBaseStakeholder):
     @role.setter
     def role(self, value: str):
         allowed_values = RoleEnum.list_allowed_values()
-        assert (
-            value.upper() in allowed_values
-        ), 'Couldn\'t set property "role". "%s" is not in %s' % (value, allowed_values)
+        assert value.upper() in allowed_values, 'Couldn\'t set property "role". "%s" is not in %s' % (
+            value,
+            allowed_values,
+        )
         self._role = RoleEnum(value.upper())
 
     @property

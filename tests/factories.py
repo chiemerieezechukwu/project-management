@@ -11,6 +11,4 @@ class StakeholderFactory(factory.Factory):
 
     first_name = factory.LazyAttribute(lambda _: faker.unique.first_name())
     last_name = factory.LazyAttribute(lambda _: faker.unique.last_name())
-    email = factory.LazyAttribute(
-        lambda self: "{}{}@example.com".format(self.first_name, self.last_name).lower()
-    )
+    email = factory.LazyAttribute(lambda self: "{}{}@example.com".format(self.first_name, self.last_name).lower())

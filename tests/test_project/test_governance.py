@@ -10,14 +10,10 @@ def governance(stakeholder_factory, monkeypatch):
     stakeholders = stakeholder_factory.create_batch(5)
 
     mock_project_charter = Mock(spec=["project_stakeholders"])
-    monkeypatch.setattr(
-        mock_project_charter, "project_stakeholders", stakeholders, raising=True
-    )
+    monkeypatch.setattr(mock_project_charter, "project_stakeholders", stakeholders, raising=True)
 
     mock_project = Mock(spec=["project_charter"])
-    monkeypatch.setattr(
-        mock_project, "project_charter", mock_project_charter, raising=True
-    )
+    monkeypatch.setattr(mock_project, "project_charter", mock_project_charter, raising=True)
 
     governance = ProjectGovernance(project=mock_project)
 
@@ -55,9 +51,7 @@ def test_stakeholder_cannot_sign_twice(governance):
     with pytest.raises(AssertionError):
         governance.sign_agreement(stakeholders[0])
 
-    assert len(governance.signed_by) == len(stakeholders) - len(
-        governance.not_signed_by
-    )
+    assert len(governance.signed_by) == len(stakeholders) - len(governance.not_signed_by)
 
 
 def test_only_stakeholder_instances_allowed_to_sign(governance):

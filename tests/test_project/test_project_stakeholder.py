@@ -26,10 +26,7 @@ def test_Stakeholder(stakeholder: Stakeholder):
     assert stakeholder.stakeholder_type == "unknown"
     assert stakeholder.role == "UNSET"
     assert str(stakeholder) == f"Stakeholder({stakeholder.first_name})"
-    assert (
-        stakeholder.get_full_name()
-        == f"{stakeholder.first_name} {stakeholder.last_name}"
-    )
+    assert stakeholder.get_full_name() == f"{stakeholder.first_name} {stakeholder.last_name}"
 
 
 @pytest.mark.parametrize("attr", ["responsibility", "stakeholder_title"])
@@ -38,9 +35,7 @@ def test_Stakeholder_attr_raises_when_not_set(attr, stakeholder):
         getattr(stakeholder, attr)
 
 
-@pytest.mark.parametrize(
-    "attr, value", [("responsibility", RESPONSIBILITY), ("stakeholder_title", TITLE)]
-)
+@pytest.mark.parametrize("attr, value", [("responsibility", RESPONSIBILITY), ("stakeholder_title", TITLE)])
 def test_Stakeholder_attr_not_raises_when_set(attr, value, stakeholder):
     setattr(stakeholder, attr, value)
     assert getattr(stakeholder, attr) == value

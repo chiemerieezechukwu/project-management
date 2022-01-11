@@ -24,17 +24,13 @@ class ProjectGovernance:
         return not bool(len(self._not_signed_by))
 
     def sign_agreement(self, signee: Stakeholder):
-        assert isinstance(signee, Stakeholder), (
-            "Expected type Stakeholder, found %s" % type(signee).__name__
-        )
+        assert isinstance(signee, Stakeholder), "Expected type Stakeholder, found %s" % type(signee).__name__
 
         assert signee in self.get_all_stakeholders(), (
             "%s can't sign as they are external to the project" % signee.get_full_name()
         )
 
-        assert signee not in self._signed_by, (
-            "This document has already been signed by %s." % signee.get_full_name()
-        )
+        assert signee not in self._signed_by, "This document has already been signed by %s." % signee.get_full_name()
         self._signed_by.append(signee)
         self._not_signed_by.remove(signee)
 

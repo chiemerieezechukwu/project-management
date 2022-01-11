@@ -30,9 +30,7 @@ def test_ProjectCharter_set_executive_summary(charter: ProjectCharter, monkeypat
     assert charter.executive_summary == "Fake Summary"
 
 
-def test_ProjectCharter_is_class_stakeholder(
-    charter: ProjectCharter, stakeholder, stakeholder_factory
-):
+def test_ProjectCharter_is_class_stakeholder(charter: ProjectCharter, stakeholder, stakeholder_factory):
     assert charter.is_class_stakeholder(stakeholder) is True
 
     stakeholders: List[Stakeholder] = stakeholder_factory.build_batch(5)
@@ -45,9 +43,7 @@ def test_ProjectCharter_is_class_stakeholder(
     assert charter.is_class_stakeholder(altered_stakeholders) is False
 
 
-def test_ProjectCharter__finalize_add_stakeholder(
-    charter: ProjectCharter, stakeholder: Stakeholder
-):
+def test_ProjectCharter__finalize_add_stakeholder(charter: ProjectCharter, stakeholder: Stakeholder):
     charter._ProjectCharter__finalize_add_stakeholder(stakeholder)
     assert stakeholder in charter.project_stakeholders
     assert charter in stakeholder.projects_involved
@@ -63,9 +59,7 @@ def test_ProjectCharter__finalize_add_stakeholder_cannot_add_stakeholder_twice(
 
 
 @patch("project.project_charter.ProjectCharter.is_class_stakeholder")
-def test_ProjectCharter_add_stakeholder(
-    mocked_is_class_stakeholder, charter: ProjectCharter, stakeholder_factory
-):
+def test_ProjectCharter_add_stakeholder(mocked_is_class_stakeholder, charter: ProjectCharter, stakeholder_factory):
     assert charter.is_class_stakeholder is mocked_is_class_stakeholder
     stakeholders: List[Stakeholder] = stakeholder_factory.build_batch(5)
 
@@ -76,9 +70,7 @@ def test_ProjectCharter_add_stakeholder(
     mocked_is_class_stakeholder.return_value = True
     charter._ProjectCharter__finalize_add_stakeholder = Mock()
     charter.add_stakeholder(stakeholders[0])
-    charter._ProjectCharter__finalize_add_stakeholder.assert_called_with(
-        stakeholders[0]
-    )
+    charter._ProjectCharter__finalize_add_stakeholder.assert_called_with(stakeholders[0])
 
     charter.add_stakeholder(stakeholders)
     expected_calls = (call(stakeholder) for stakeholder in stakeholders)
