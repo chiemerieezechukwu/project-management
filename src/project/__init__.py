@@ -1,10 +1,12 @@
+from project.project_charter import ProjectCharter
+
 from .deliverables import Deliverable
 from .governance import ProjectGovernance
 
 
 class Project:
     def __init__(self, project_charter) -> None:
-        self.project_charter = project_charter
+        self.project_charter: ProjectCharter = project_charter
         self.stakeholders = project_charter.project_stakeholders
         self._deliverables = []
         self._project_risks = []
@@ -38,3 +40,6 @@ class Project:
     def reject_deliverable(self, deliverable: Deliverable):
         assert deliverable in self._deliverables, "Deliverable does not exist within the current project"
         deliverable.mark_as_rejected()
+
+    def __repr__(self) -> str:
+        return self.project_charter.project_title

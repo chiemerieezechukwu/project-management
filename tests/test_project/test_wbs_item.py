@@ -25,16 +25,16 @@ def test_WBSItem(wbs_item: WBSItem, monkeypatch):
     assert wbs_item.resource is None
     assert isinstance(wbs_item.node_instance, Node)
 
-    monkeypatch.setattr(wbs_item, "percent_complete", 50)
+    monkeypatch.setattr(wbs_item, "percent_complete", 50, raising=True)
     assert wbs_item.percent_complete == 50
 
-    monkeypatch.setattr(wbs_item, "status", "IN_PROGRESS")
+    monkeypatch.setattr(wbs_item, "status", "IN_PROGRESS", raising=True)
     assert wbs_item.status == "IN_PROGRESS"
 
-    monkeypatch.setattr(wbs_item, "objective", "Fake objective")
+    monkeypatch.setattr(wbs_item, "objective", "Fake objective", raising=True)
     assert wbs_item.objective == "Fake objective"
 
-    monkeypatch.setattr(wbs_item, "resource", "Fake resource")
+    monkeypatch.setattr(wbs_item, "resource", "Fake resource", raising=True)
     assert wbs_item.resource == "Fake resource"
 
 
