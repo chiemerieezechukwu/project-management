@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Optional, Union
 
 from src.utils import AbstractBaseDocument
 
@@ -11,7 +11,7 @@ class ProjectCharter(AbstractBaseDocument):
     Once a project charter exists, it is assumed that a project is underway
     """
 
-    def __init__(self, project_title=None) -> None:
+    def __init__(self, project_title: Optional[str] = None) -> None:
         super().__init__("Project Charter")
         self._project_title = project_title
         self._project_stakeholders: List[Stakeholder] = []
