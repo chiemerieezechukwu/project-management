@@ -9,7 +9,7 @@ class WBSItem:
         self.duration: timedelta = duration
         self.lag: timedelta = lag
         self._percent_complete: int = 0
-        self._status = None  # todo enum with 'ACTIVE', 'ON HOLD', 'COMPLETE' as possible values
+        self._status = None
         self._objective = None
         self._resource = None
 
@@ -23,6 +23,7 @@ class WBSItem:
             hasattr(self, "duration") or hasattr(self, "__duration")
         ), "This attribute is immutable once the object is created"
         assert isinstance(value, timedelta), "Only timedelta objects can be set, not %s." % type(value).__name__
+
         self.__duration = value
 
     @duration.deleter

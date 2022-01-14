@@ -75,4 +75,11 @@ class WBS:
         for pair in args:
             assert all(isinstance(x, WBSItem) for x in pair), "Only tuples of WBSItem instances are allowed"
             origin, dest = pair
-            initial = initial.link(str(origin), str(dest))
+
+            try:
+                initial = initial.link(str(origin), str(dest))
+            except KeyError as ke:
+                raise KeyError(
+                    f"The WBSItem {ke} does not exist within this WBS. "
+                    "Did you forget to add it? add it using the method `.add_wbs_item()`"
+                )
