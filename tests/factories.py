@@ -23,4 +23,8 @@ class WBSItemFactory(factory.Factory):
         model = WBSItem
 
     work_item_name = factory.LazyAttribute(lambda _: faker.unique.text().split(" ")[0])
-    duration = factory.lazy_attribute(lambda _: timedelta(days=random.randint(0, 365)))
+    duration = factory.LazyAttribute(lambda _: timedelta(days=random.randint(0, 365)))
+
+    @factory.post_generation
+    def add_percent_complete(self, create, extracted, **kwargs):
+        self.percent_complete = random.randint(1, 100)

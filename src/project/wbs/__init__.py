@@ -31,7 +31,8 @@ class WBS:
 
     @property
     def finish_date(self):
-        return self.start_date + self.duration
+        """This value depends on duration which depends on wbs_items not being empty"""
+        return self.start_date + self.duration if self.duration else "N/A"
 
     @property
     def duration(self):
@@ -47,14 +48,15 @@ class WBS:
         Updates timing calculations for all children nodes.
         Sets the es, ls, ef, lf information and updates duration
         """
-        if not self._check_update_called:
+        if not self._check_update_called and self.wbs_items:
             self._check_update_called = True
             self.parent_node.update_all()
 
     def get_critical_path(self):
         """calculate the critical path using CPM"""
         self.update_all()
-        return " -> ".join(str(x) for x in self.parent_node.get_critical_path())
+        critical_path = self.parent_node.get_critical_path()
+        return " -> ".join(str(x) for x in critical_path) if critical_path else None
 
     def add_wbs_item(self, *args: WBSItem):
         for wbs_item in args:
@@ -64,7 +66,7 @@ class WBS:
             if wbs_item in self._wbs_items:
                 continue
             self._wbs_items.append(wbs_item)
-            self.parent_node.add(wbs_item.get_node_instance())
+            self.parent_node.add(wbs_item.node_instance)
 
     def link_nodes(self, *args: Tuple[WBSItem, WBSItem]):
         """
@@ -83,3 +85,6 @@ class WBS:
                     f"The WBSItem {ke} does not exist within this WBS. "
                     "Did you forget to add it? add it using the method `.add_wbs_item()`"
                 )
+
+    def __repr__(self) -> str:
+        return self.name
