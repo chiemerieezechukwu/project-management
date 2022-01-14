@@ -11,7 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out
+      - name: Check Out
         uses: actions/checkout@v2
-      - name: Install requirements and run tests with make
+      - name: Get Branch Name
+        run: echo "BRANCH=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
+      - name: Install requirements, run tests with make and write coverage
         run: make testall
+      - name: Get Coverage for badge
+        run: echo "COVERAGE=$(cat coverage.json | jq .totals.percent_covered)" >> $GITHUB_ENV
+      - name: Create Badge
+        uses: schneegans/dynamic-badges-action@v1.1.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: a1817190b63b0cd8f551cb3ec2ab6524
+          filename: ${{ GITHUB_REPOSITORY }}${{ env.BRANCH }}_coverage.json
+          label: Code Coverage
+          message: ${{ env.COVERAGE }}
+          color: green
+          namedLogo: GitHub Actions

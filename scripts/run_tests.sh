@@ -11,10 +11,10 @@ cd ..
 
 source venv/bin/activate
 
-pytest --cov-report=term-missing --cov=crowdmoni --disable-network -x --cov-fail-under=90
+pytest --cov-report=term-missing --cov=src --disable-network -x --cov-fail-under=90
 
 echo "writing coverage..."
 
-coverage html
+coverage json
 
 deactivate
