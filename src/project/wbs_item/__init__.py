@@ -72,7 +72,8 @@ class WBSItem:
     def resource(self, value):
         self._resource = value
 
-    def get_node_instance(self):
+    @property
+    def node_instance(self):
         return Node(name=self.work_item_name, duration=self.__duration, lag=self._lag)
 
     def __repr__(self) -> str:

@@ -18,11 +18,12 @@ def test_WBSItem(wbs_item: WBSItem, monkeypatch):
     assert wbs_item.work_item_name == NAME
     assert wbs_item.duration == DURATION
     assert wbs_item.lag == timedelta(days=0)
-    assert wbs_item.percent_complete == 0
+    assert wbs_item.percent_complete != 0
+    assert wbs_item.percent_complete in range(1, 101)
     assert wbs_item.status is None
     assert wbs_item.objective is None
     assert wbs_item.resource is None
-    assert isinstance(wbs_item.get_node_instance(), Node)
+    assert isinstance(wbs_item.node_instance, Node)
 
     monkeypatch.setattr(wbs_item, "percent_complete", 50)
     assert wbs_item.percent_complete == 50
