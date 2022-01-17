@@ -3,7 +3,7 @@ from ..project_stakeholder import Stakeholder
 
 
 class ProjectGovernance:
-    TERMS_N_CONDITIONS = """to be defined"""
+    TERMS_N_CONDITIONS = None
 
     def __init__(self, project) -> None:
         self._project = project
