@@ -18,11 +18,11 @@ class StakeholderRole:
 
 student = Stakeholder("Chiemerie", "Ezechukwu", "student@studenti.polito.it")
 student.stakeholder_type = StakeholderType.STUDENT
-student.role = StakeholderRole.ACCOUNTABLE
+student.role = StakeholderRole.RESPONSIBLE
 
 professor = Stakeholder("Prof. Paolo", "Demagistris", "professor@polito.it")
 professor.stakeholder_type = StakeholderType.PROFESSOR
-professor.role = StakeholderRole.RESPONSIBLE
+professor.role = StakeholderRole.ACCOUNTABLE
 
 project_charter = ProjectCharter(project_title="Master's Thesis")
 project_charter.add_stakeholder([student, professor])
