@@ -1,4 +1,4 @@
-from project.project_charter import ProjectCharter
+from src.project.project_charter import ProjectCharter
 
 from .deliverables import Deliverable
 from .governance import ProjectGovernance
